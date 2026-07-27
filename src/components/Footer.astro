@@ -1,0 +1,31 @@
+---
+import Mark from './Mark.astro';
+---
+<footer class="footer">
+  <div class="wrap">
+    <Mark size={34} stroke="#F5F0E4" bindu="#AD8A3E" />
+    <p class="ft-word">Ameya <em>Rituals</em></p>
+    <p class="ft-sign">Les traditions vivent tant qu'on les transmet.</p>
+    <nav class="ft-links" aria-label="Liens de pied de page">
+      <a href="https://instagram.com/ameyarituals" target="_blank" rel="noopener">Instagram</a>
+      <span aria-hidden="true">·</span>
+      <a href="/mentions-legales">Mentions légales</a>
+      <span aria-hidden="true">·</span>
+      <a href="/confidentialite">Confidentialité</a>
+    </nav>
+    <p class="ft-copy">© 2026 Ameya Rituals</p>
+  </div>
+</footer>
+
+<style>
+  .footer{ background:var(--noir); color:var(--cream); padding:64px 0 58px; text-align:center; }
+  .footer :global(svg){ margin:0 auto; }
+  .ft-word{ font-family:var(--serif); font-size:17px; letter-spacing:0.14em; text-transform:uppercase; margin-top:16px; }
+  .ft-word em{ font-style:italic; text-transform:none; color:rgba(245,240,228,0.72); }
+  .ft-sign{ font-family:var(--serif); font-style:italic; font-size:14px; color:var(--muted-cream); margin-top:14px; }
+  .ft-links{ display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin-top:26px; }
+  .ft-links a{ font-family:var(--mono); font-size:11.5px; letter-spacing:0.08em; color:rgba(245,240,228,0.7); transition:color .3s; }
+  .ft-links a:hover{ color:var(--flame); }
+  .ft-links span{ color:rgba(245,240,228,0.3); }
+  .ft-copy{ font-family:var(--mono); font-size:11px; color:rgba(245,240,228,0.4); margin-top:24px; letter-spacing:0.06em; }
+</style>

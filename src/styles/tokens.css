@@ -1,0 +1,23 @@
+:root{
+  /* Palette Ameya — verrouillée (Constitution §5) */
+  --noir:#14170F;
+  --ink:#2B3226;
+  --sage:#7C8969;
+  --clay:#A8734A;
+  --brass:#AD8A3E;
+  --flame:#E8C77A;
+  --cream:#F5F0E4;
+  --cream-2:#EFE8D8;
+
+  --line:rgba(43,50,38,0.14);
+  --line-cream:rgba(245,240,228,0.16);
+  --muted:rgba(43,50,38,0.62);
+  --muted-cream:rgba(245,240,228,0.62);
+
+  /* Typographies — Fraunces (titres) · Poppins (texte) · IBM Plex Mono (étiquettes) */
+  --serif:'Fraunces Variable','Fraunces',Georgia,serif;
+  --sans:'Poppins',system-ui,-apple-system,sans-serif;
+  --mono:'IBM Plex Mono',ui-monospace,monospace;
+
+  --maxw:1080px;
+}

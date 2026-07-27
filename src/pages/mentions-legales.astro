@@ -1,0 +1,52 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Mentions légales — Ameya Rituals" path="/mentions-legales/">
+  <main class="legal">
+    <div class="wrap">
+      <a class="legal-back" href="/">← Ameya Rituals</a>
+      <h1>Mentions légales</h1>
+
+      <h2>Éditeur du site</h2>
+      <p>
+        Ce site est édité par <strong>[Prénom NOM]</strong>, personne physique, éditeur non
+        professionnel. Aucune société n'est constituée à ce jour ; ce site n'exerce aucune
+        activité commerciale et ne propose aucun produit à la vente.
+      </p>
+      <p>Contact : <a href="mailto:commande@ameya.fr">commande@ameya.fr</a></p>
+
+      <h2>Directeur de la publication</h2>
+      <p>[Prénom NOM]</p>
+
+      <h2>Hébergement</h2>
+      <p>
+        Le site est hébergé par <strong>Cloudflare, Inc.</strong>, 101 Townsend Street,
+        San Francisco, CA 94107, États-Unis — <a href="https://www.cloudflare.com" target="_blank" rel="noopener">cloudflare.com</a>.
+      </p>
+
+      <h2>Propriété intellectuelle</h2>
+      <p>
+        L'ensemble des contenus (textes, vidéos, identité visuelle, marque « Ameya Rituals »)
+        est la propriété de leur auteur. Toute reproduction, même partielle, est interdite sans
+        autorisation écrite préalable.
+      </p>
+
+      <!--
+        À la création de la SASU, remplacer le bloc « Éditeur » par :
+        Dénomination · Forme (SASU) · Capital social · SIREN/RCS · Siège social · Directeur de publication.
+      -->
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style is:global>
+  .legal{ background:var(--cream); color:var(--ink); padding:110px 0 40px; min-height:70vh; }
+  .legal .wrap{ max-width:680px; }
+  .legal-back{ font-family:var(--mono); font-size:12px; letter-spacing:0.08em; color:var(--clay); }
+  .legal h1{ font-size:clamp(28px,5vw,40px); margin:26px 0 8px; }
+  .legal h2{ font-family:var(--serif); font-size:19px; font-weight:500; margin:34px 0 6px; }
+  .legal p{ font-size:14.5px; line-height:1.8; color:rgba(43,50,38,0.86); margin-top:10px; }
+  .legal a{ color:var(--clay); }
+</style>

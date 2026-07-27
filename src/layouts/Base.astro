@@ -1,0 +1,70 @@
+---
+import '@fontsource-variable/fraunces';
+import '@fontsource/poppins/300.css';
+import '@fontsource/poppins/400.css';
+import '@fontsource/poppins/500.css';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/tokens.css';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  path?: string;
+}
+const {
+  title = 'Ameya Rituals — Les Gestes qui Traversent le Temps',
+  description = "Nous racontons les gestes, les rituels et les traditions transmis de corps en corps, entre l'Inde et le monde.",
+  path = '/',
+} = Astro.props;
+
+const site = 'https://ameya.fr';
+const canonical = new URL(path, site).href;
+const ogImage = new URL('/og-image.png', site).href;
+---
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="theme-color" content="#14170F" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Ameya Rituals" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:locale" content="fr_FR" />
+
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+</head>
+<body>
+  <slot />
+
+  <script>
+    // Révélation douce des sections à l'entrée dans le viewport.
+    const els = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window && els.length) {
+      const io = new IntersectionObserver((entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+        }
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+      els.forEach((el) => io.observe(el));
+    } else {
+      els.forEach((el) => el.classList.add('in'));
+    }
+  </script>
+</body>
+</html>

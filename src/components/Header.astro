@@ -1,0 +1,33 @@
+---
+import Mark from './Mark.astro';
+---
+<header class="site-header">
+  <div class="wrap hdr">
+    <a href="/" class="hdr-brand" aria-label="Ameya Rituals — accueil">
+      <Mark size={26} stroke="#F5F0E4" bindu="#AD8A3E" />
+      <span class="hdr-word">Ameya <em>Rituals</em></span>
+    </a>
+    <a href="#transmettre" class="hdr-cta">S'inscrire</a>
+  </div>
+</header>
+
+<style>
+  .site-header{
+    position:absolute; top:0; left:0; right:0; z-index:10;
+    padding:22px 0;
+  }
+  .hdr{ display:flex; align-items:center; justify-content:space-between; }
+  .hdr-brand{ display:flex; align-items:center; gap:11px; }
+  .hdr-word{
+    font-family:var(--serif); font-size:16px; letter-spacing:0.14em;
+    color:var(--cream); text-transform:uppercase;
+  }
+  .hdr-word em{ font-style:italic; text-transform:none; letter-spacing:0.06em; color:rgba(245,240,228,0.72); }
+  .hdr-cta{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(245,240,228,0.82); padding-bottom:3px; border-bottom:1px solid rgba(245,240,228,0.32);
+    transition:color .3s, border-color .3s;
+  }
+  .hdr-cta:hover{ color:var(--flame); border-color:var(--flame); }
+  @media (max-width:520px){ .hdr-word{ font-size:14px; } }
+</style>

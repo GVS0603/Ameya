@@ -1,0 +1,112 @@
+---
+---
+<section class="transmettre" id="transmettre">
+  <div class="halo" aria-hidden="true"></div>
+  <div class="wrap tr-inner">
+    <p class="eyebrow reveal" style="color:var(--brass)">Transmettre</p>
+    <h2 class="tr-title reveal d1">Deux lettres par mois.<br />Rien d'autre.</h2>
+    <p class="tr-line reveal d2">Aucun bruit. Seulement des gestes, des rituels et des histoires qui méritent d'être transmis.</p>
+
+    <form class="tr-form reveal d2" id="ameya-newsletter" novalidate>
+      <label class="sr-only" for="email">Adresse email</label>
+      <input id="email" name="EMAIL" type="email" required placeholder="votre@email.fr" autocomplete="email" />
+      <button type="submit">Je m'inscris</button>
+    </form>
+    <p class="tr-msg" id="ameya-newsletter-msg" role="status" aria-live="polite"></p>
+    <p class="tr-consent reveal d3">
+      En vous inscrivant, vous acceptez de recevoir la lettre d'Ameya Rituals.
+      Désinscription en un clic. <a href="/confidentialite">Confidentialité</a>.
+    </p>
+  </div>
+</section>
+
+<style>
+  .transmettre{ background:var(--noir); color:var(--cream); padding:116px 0; position:relative; overflow:hidden; text-align:center; }
+  .halo{
+    position:absolute; top:50%; left:50%; width:min(560px,110vw); height:min(560px,110vw);
+    transform:translate(-50%,-50%);
+    background:radial-gradient(circle, rgba(173,138,62,0.18) 0%, transparent 62%); pointer-events:none;
+  }
+  .tr-inner{ position:relative; z-index:2; max-width:560px; }
+  .tr-title{ font-size:clamp(27px,4.6vw,38px); line-height:1.14; margin-top:16px; }
+  .tr-line{ font-size:14.5px; color:var(--muted-cream); margin:18px auto 0; max-width:440px; }
+
+  .tr-form{
+    display:flex; gap:10px; margin:32px auto 0; max-width:460px;
+  }
+  .tr-form input{
+    flex:1 1 auto; min-width:0;
+    background:rgba(245,240,228,0.06); border:1px solid rgba(245,240,228,0.24); border-radius:3px;
+    color:var(--cream); padding:14px 16px; font-family:var(--sans); font-size:14px; font-weight:300;
+  }
+  .tr-form input::placeholder{ color:rgba(245,240,228,0.4); }
+  .tr-form input:focus-visible{ border-color:var(--brass); outline:none; }
+  .tr-form button{
+    flex:0 0 auto; background:var(--brass); color:var(--noir); border:none; border-radius:3px;
+    padding:14px 24px; font-family:var(--mono); font-size:12px; letter-spacing:0.14em;
+    text-transform:uppercase; font-weight:500; cursor:pointer; transition:background .3s;
+  }
+  .tr-form button:hover{ background:var(--flame); }
+  .tr-form button:disabled{ opacity:.55; cursor:default; }
+
+  .tr-msg{ min-height:20px; margin-top:16px; font-size:13px; color:var(--flame); }
+  .tr-msg.error{ color:#E5A17A; }
+  .tr-consent{ font-size:11.5px; color:rgba(245,240,228,0.5); margin-top:22px; line-height:1.6; }
+  .tr-consent a{ color:rgba(245,240,228,0.75); border-bottom:1px solid rgba(245,240,228,0.3); }
+
+  @media (max-width:480px){ .tr-form{ flex-direction:column; } }
+</style>
+
+<script>
+  // ── BRANCHEMENT BREVO ─────────────────────────────────────────
+  //  Colle ici l'URL d'action de ton formulaire Brevo (double opt-in).
+  //  Brevo → Contacts → Formulaires → « Partager » → URL du formulaire.
+  //  Tant que cette valeur est vide, le formulaire affiche un message
+  //  de confirmation local (rien n'est perdu, mais rien n'est envoyé).
+  const BREVO_ACTION = '';
+  // ──────────────────────────────────────────────────────────────
+
+  const form = document.getElementById('ameya-newsletter');
+  const msg = document.getElementById('ameya-newsletter-msg');
+
+  if (form && msg) {
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const input = form.querySelector('input[name="EMAIL"]');
+      const btn = form.querySelector('button');
+      const email = (input?.value || '').trim();
+      msg.classList.remove('error');
+
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        msg.textContent = 'Merci de saisir une adresse email valide.';
+        msg.classList.add('error');
+        input?.focus();
+        return;
+      }
+
+      if (!BREVO_ACTION) {
+        // Mode démonstration, avant branchement Brevo.
+        msg.textContent = 'Merci — votre inscription sera active dès l\u2019ouverture de la lettre.';
+        form.reset();
+        console.warn('[Ameya] Formulaire non branché : renseigne BREVO_ACTION dans Transmettre.astro.');
+        return;
+      }
+
+      try {
+        btn.disabled = true;
+        btn.textContent = '…';
+        const body = new FormData();
+        body.append('EMAIL', email);
+        await fetch(BREVO_ACTION, { method: 'POST', mode: 'no-cors', body });
+        msg.textContent = 'Presque terminé — vérifiez votre boîte pour confirmer.';
+        form.reset();
+      } catch (err) {
+        msg.textContent = 'Une erreur est survenue. Réessayez dans un instant.';
+        msg.classList.add('error');
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Je m\u2019inscris';
+      }
+    });
+  }
+</script>

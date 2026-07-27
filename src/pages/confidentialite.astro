@@ -1,0 +1,62 @@
+---
+import Base from '../layouts/Base.astro';
+import Footer from '../components/Footer.astro';
+---
+<Base title="Politique de confidentialité — Ameya Rituals" path="/confidentialite/">
+  <main class="legal">
+    <div class="wrap">
+      <a class="legal-back" href="/">← Ameya Rituals</a>
+      <h1>Politique de confidentialité</h1>
+
+      <h2>Responsable du traitement</h2>
+      <p>[Prénom NOM] — projet éditorial « Ameya Rituals ». Contact : <a href="mailto:commande@ameya.fr">commande@ameya.fr</a>.</p>
+
+      <h2>Données collectées</h2>
+      <p>
+        Le site ne collecte qu'une seule donnée personnelle : votre <strong>adresse email</strong>,
+        et uniquement si vous choisissez de vous inscrire à la lettre d'information.
+      </p>
+
+      <h2>Finalité et base légale</h2>
+      <p>
+        Votre email sert exclusivement à vous envoyer la lettre d'Ameya Rituals. Le traitement
+        repose sur votre <strong>consentement</strong> (RGPD, art. 6.1.a), recueilli par une
+        confirmation d'inscription (double opt-in).
+      </p>
+
+      <h2>Sous-traitant</h2>
+      <p>
+        L'envoi des lettres est assuré par <strong>Brevo</strong> (Sendinblue SAS, 106 boulevard
+        Haussmann, 75008 Paris), dont les serveurs sont situés dans l'Union européenne.
+      </p>
+
+      <h2>Durée de conservation</h2>
+      <p>Votre email est conservé jusqu'à votre désinscription, possible à tout moment via le lien présent dans chaque lettre.</p>
+
+      <h2>Vos droits</h2>
+      <p>
+        Vous disposez d'un droit d'accès, de rectification, d'effacement et d'opposition. Pour
+        l'exercer, écrivez à <a href="mailto:commande@ameya.fr">commande@ameya.fr</a>. Vous pouvez
+        aussi introduire une réclamation auprès de la CNIL (<a href="https://www.cnil.fr" target="_blank" rel="noopener">cnil.fr</a>).
+      </p>
+
+      <h2>Cookies et mesure d'audience</h2>
+      <p>
+        Ce site n'utilise aucun cookie publicitaire ni traceur tiers. La mesure d'audience, si
+        elle est activée, s'appuie sur <strong>Cloudflare Web Analytics</strong>, sans cookie et
+        sans donnée personnelle — aucun bandeau de consentement n'est donc requis.
+      </p>
+    </div>
+  </main>
+  <Footer />
+</Base>
+
+<style is:global>
+  .legal{ background:var(--cream); color:var(--ink); padding:110px 0 40px; min-height:70vh; }
+  .legal .wrap{ max-width:680px; }
+  .legal-back{ font-family:var(--mono); font-size:12px; letter-spacing:0.08em; color:var(--clay); }
+  .legal h1{ font-size:clamp(28px,5vw,40px); margin:26px 0 8px; }
+  .legal h2{ font-family:var(--serif); font-size:19px; font-weight:500; margin:34px 0 6px; }
+  .legal p{ font-size:14.5px; line-height:1.8; color:rgba(43,50,38,0.86); margin-top:10px; }
+  .legal a{ color:var(--clay); }
+</style>

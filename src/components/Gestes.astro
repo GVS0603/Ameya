@@ -1,0 +1,46 @@
+---
+import EpisodeCard from './EpisodeCard.astro';
+import { episodes } from '../data/episodes';
+---
+<section class="gestes" id="gestes">
+  <div class="wrap">
+    <div class="gestes-head reveal">
+      <p class="eyebrow" style="color:var(--brass)">Les gestes</p>
+      <h2 class="gestes-title">Chaque épisode raconte un geste<br />qui a traversé les siècles.</h2>
+      <p class="gestes-intro">De la flamme du matin au repas partagé à même la main — de courts films documentaires, filmés au plus près de la matière.</p>
+    </div>
+    <div class="ep-grid">
+      {episodes.map((ep, i) => (
+        <div class:list={['reveal', i === 1 && 'd1', i === 2 && 'd2']}>
+          <EpisodeCard ep={ep} />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .gestes{ background:var(--noir); color:var(--cream); padding:104px 0 112px; }
+  .gestes-head{ max-width:620px; }
+  .gestes-title{ font-size:clamp(27px,4.6vw,40px); line-height:1.16; margin-top:16px; }
+  .gestes-intro{ font-size:14.5px; color:var(--muted-cream); margin-top:18px; max-width:500px; }
+  .ep-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:22px; margin-top:54px;
+  }
+  @media (max-width:820px){ .ep-grid{ grid-template-columns:repeat(2,1fr); } }
+  @media (max-width:560px){ .ep-grid{ grid-template-columns:1fr; max-width:360px; margin-left:auto; margin-right:auto; } }
+</style>
+
+<script>
+  // Lecture en place des vidéos auto-hébergées (progressif : n'agit que si des vidéos existent).
+  document.querySelectorAll('.ep-media[data-video]').forEach((box) => {
+    const video = box.querySelector('video');
+    const btn = box.querySelector('.ep-play');
+    if (!video || !btn) return;
+    btn.addEventListener('click', () => {
+      box.classList.add('playing');
+      video.setAttribute('controls', '');
+      video.play();
+    });
+  });
+</script>
