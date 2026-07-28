@@ -58,13 +58,8 @@
 </style>
 
 <script>
-  // ── BRANCHEMENT BREVO ─────────────────────────────────────────
-  //  Colle ici l'URL d'action de ton formulaire Brevo (double opt-in).
-  //  Brevo → Contacts → Formulaires → « Partager » → URL du formulaire.
-  //  Tant que cette valeur est vide, le formulaire affiche un message
-  //  de confirmation local (rien n'est perdu, mais rien n'est envoyé).
-  const BREVO_ACTION = '';
-  // ──────────────────────────────────────────────────────────────
+  // ── Formulaire branché sur Brevo (double opt-in) ──────────────
+  const BREVO_ACTION = 'https://67f071d2.sibforms.com/serve/MUIFAI4_CiH-f63aZhsWy0sjntVPUGiSuwkU4k-SVUxWqmVBbI8t6WdPff2aVugHz53N7RefxvF6Gr-S0Aa7kHdGsVTtKmG4NrEC9Ubr-BO7WtdzX5QYWfjSgbdk3gvrmuOEDqAJobBoyyjCkPzpCMKikQQtrC8NwQccpdz7uMafN0BdY3x2HrF--PLViKQJHz8qpVYP4YDEf8EC9A==';
 
   const form = document.getElementById('ameya-newsletter');
   const msg = document.getElementById('ameya-newsletter-msg');
@@ -84,28 +79,29 @@
         return;
       }
 
-      if (!BREVO_ACTION) {
-        // Mode démonstration, avant branchement Brevo.
-        msg.textContent = 'Merci — votre inscription sera active dès l\u2019ouverture de la lettre.';
-        form.reset();
-        console.warn('[Ameya] Formulaire non branché : renseigne BREVO_ACTION dans Transmettre.astro.');
-        return;
-      }
-
       try {
         btn.disabled = true;
+        const original = btn.textContent;
+        btn.dataset.label = original;
         btn.textContent = '…';
+
         const body = new FormData();
         body.append('EMAIL', email);
+        body.append('OPT_IN', '1');
+        body.append('email_address_check', ''); // honeypot anti-bot : doit rester vide
+        body.append('locale', 'fr');
+
         await fetch(BREVO_ACTION, { method: 'POST', mode: 'no-cors', body });
-        msg.textContent = 'Presque terminé — vérifiez votre boîte pour confirmer.';
+
+        msg.textContent = 'Presque terminé — vérifiez votre boîte pour confirmer votre inscription.';
         form.reset();
       } catch (err) {
         msg.textContent = 'Une erreur est survenue. Réessayez dans un instant.';
         msg.classList.add('error');
       } finally {
-        btn.disabled = false;
-        btn.textContent = 'Je m\u2019inscris';
+        const btn2 = form.querySelector('button');
+        btn2.disabled = false;
+        btn2.textContent = btn2.dataset.label || 'Je m\u2019inscris';
       }
     });
   }
