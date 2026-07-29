@@ -1,0 +1,56 @@
+---
+// ─────────────────────────────────────────────────────────────
+//  LE FILM DE LANCEMENT — le voyage à l'origine d'Ameya (8 000 km).
+//  Vidéo verticale (9:16), lecture au clic AVEC le son (voix off).
+//  Vidéo : public/videos/pourquoi.mp4  ·  Poster : public/posters/pourquoi.png
+//  Le titre ci-dessous est une proposition — remplace-le par ta ligne.
+// ─────────────────────────────────────────────────────────────
+const video = '/videos/pourquoi.mp4';
+const poster = '/posters/pourquoi.png';
+---
+<section class="film" id="film">
+  <div class="wrap film-inner">
+    <p class="eyebrow reveal" style="color:var(--brass)">Le film</p>
+    <h2 class="film-title reveal d1">Huit mille kilomètres,<br />pour retrouver un geste.</h2>
+    <p class="film-lead reveal d1">L'histoire d'un retour vers l'Inde, avant qu'Ameya n'existe.</p>
+    <div class="film-player reveal d2" data-film>
+      <video preload="metadata" playsinline poster={poster} src={video}></video>
+      <button class="film-play" type="button" aria-label="Lire le film de lancement">
+        <svg viewBox="0 0 24 24" width="26" height="26" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+<style>
+  .film{ background:var(--noir); color:var(--cream); padding:100px 0 108px; border-top:1px solid rgba(245,240,228,0.08); }
+  .film-inner{ max-width:680px; text-align:center; margin:0 auto; }
+  .film-title{ font-family:var(--serif); font-size:clamp(26px,4.4vw,38px); line-height:1.18; margin-top:16px; }
+  .film-lead{ font-size:14.5px; color:var(--muted-cream); margin-top:16px; }
+  .film-player{
+    position:relative; margin:42px auto 0; max-width:330px; aspect-ratio:9/16;
+    border-radius:6px; overflow:hidden; background:#000; border:1px solid rgba(245,240,228,0.10);
+  }
+  .film-player video{ width:100%; height:100%; object-fit:cover; }
+  .film-player.playing video{ object-fit:contain; }
+  .film-play{
+    position:absolute; inset:0; margin:auto; width:64px; height:64px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer; color:var(--noir);
+    background:rgba(245,240,228,0.92); border:none; transition:transform .35s, background .35s;
+  }
+  .film-play:hover{ transform:scale(1.06); background:var(--flame); }
+  .film-player.playing .film-play{ display:none; }
+</style>
+
+<script>
+  document.querySelectorAll('.film-player[data-film]').forEach((box) => {
+    const video = box.querySelector('video');
+    const btn = box.querySelector('.film-play');
+    if (!video || !btn) return;
+    btn.addEventListener('click', () => {
+      box.classList.add('playing');
+      video.setAttribute('controls', '');
+      video.play();
+    });
+  });
+</script>
