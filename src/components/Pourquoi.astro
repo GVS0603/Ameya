@@ -1,39 +1,114 @@
 ---
 // ─────────────────────────────────────────────────────────────
-//  PREMIÈRE VERSION — à réécrire par Henry.
-//  C'est le cœur émotionnel de la page, en registre [VÉCU].
-//  Elle DOIT être vraie : les détails (« huit mille kilomètres »,
-//  le rapport personnel à l'Inde) sont des marqueurs à confirmer
-//  ou remplacer. Ne pas publier tel quel sans validation.
+//  POURQUOI AMEYA — le cœur émotionnel de la page. Registre [VÉCU].
+//  Une lettre d'un père à sa fille. Tutoiement. Texte validé (mots
+//  de Henry). La vidéo (retour vers l'Inde) est fusionnée ICI, SOUS
+//  le texte : on lit la lettre, puis la vidéo la prolonge.
+//
+//  Vidéo : public/videos/pourquoi.mp4  ·  Poster : public/posters/pourquoi.png
+//  Lecture au clic AVEC le son (il y a une voix off).
+//
+//  Pour placer la vidéo AU-DESSUS du texte : déplacer le bloc
+//  <div class="pq-video …"> juste après <h2>/dédicace, avant .pq-body.
 // ─────────────────────────────────────────────────────────────
+const video = '/videos/pourquoi.mp4';
+const poster = '/posters/pourquoi.png';
 ---
 <section class="pourquoi" id="pourquoi">
   <div class="wrap pq-inner">
-    <p class="eyebrow reveal">Pourquoi Ameya</p>
-    <p class="pq-lead reveal d1">
-      Entre l'Inde et la France, il y a huit mille kilomètres. Et pourtant,
-      certains gestes ont fait le voyage.
-    </p>
+
+    <h2 class="pq-title reveal">Pourquoi Ameya</h2>
+    <p class="pq-dedicace reveal d1">À ma fille.</p>
+
     <div class="pq-body reveal d2">
-      <p>Une main qui verse l'huile. Une flamme qu'on allume au matin. Un repas partagé
-      à même la feuille. Rien de spectaculaire — des gestes simples, répétés, chargés de sens.</p>
-      <p>Ameya Rituals est né d'une conviction : un geste est la plus vieille technologie du monde.
-      Il se transmet de corps en corps, sans un mot, et survit aux civilisations qui l'ont inventé.</p>
-      <p>Nous ne vendons rien aujourd'hui. Nous racontons. Parce qu'avant d'offrir un objet,
-      il faut mériter une attention — et qu'une tradition ne vit que si quelqu'un prend le temps
-      de la transmettre.</p>
+      <p>Quand tu es née, j'ai commencé à me poser une question que je ne m'étais
+      jamais vraiment posée. Que vais-je te transmettre ?</p>
+
+      <p>Je pouvais te laisser des souvenirs, des photos, des voyages. Mais je voulais
+      surtout te laisser quelque chose que le temps ne pourrait pas effacer.</p>
+
+      <p>Alors je suis revenu vers une partie de mon histoire. Vers l'Inde. Non pas pour
+      rapporter des objets, mais pour retrouver des gestes. Des gestes simples, qui prennent
+      soin du corps, qui apaisent, qui traversent les générations.</p>
+
+      <p>Je t'ai appelée Ameya. En sanskrit, cela signifie <em>ce qui ne se mesure pas.</em>
+      Parce que ce que je souhaite te transmettre ne se compte ni en kilomètres, ni en années,
+      ni en objets. Cela se transmet de main en main, de génération en génération.</p>
+
+      <p>Ameya Rituals est née de cette quête. D'abord pour toi. Puis pour toutes celles et
+      ceux qui souhaitent, eux aussi, transmettre quelque chose qui dure.</p>
     </div>
+
+    <div class="pq-video reveal d3" data-film>
+      <div class="pq-frame">
+        <video preload="metadata" playsinline poster={poster} src={video}></video>
+        <button class="pq-play" type="button" aria-label="Voir la vidéo">
+          <svg viewBox="0 0 24 24" width="24" height="24" aria-hidden="true"><path d="M8 5v14l11-7z" fill="currentColor"/></svg>
+        </button>
+      </div>
+      <p class="pq-video-cue">Voir la vidéo</p>
+    </div>
+
   </div>
 </section>
 
 <style>
-  .pourquoi{ background:var(--cream); color:var(--ink); padding:112px 0; }
+  .pourquoi{ background:var(--cream); color:var(--ink); padding:120px 0; }
   .pq-inner{ max-width:680px; }
-  .pq-lead{
-    font-family:var(--serif); font-weight:400; font-style:italic;
-    font-size:clamp(23px,3.6vw,33px); line-height:1.36; margin-top:22px; color:var(--ink);
+
+  .pq-title{ font-family:var(--serif); font-size:clamp(30px,5vw,44px); line-height:1.1; color:var(--ink); }
+  .pq-dedicace{
+    font-family:var(--serif); font-style:italic; font-weight:400;
+    font-size:clamp(16px,2.4vw,19px); color:var(--clay); margin-top:12px; letter-spacing:0.01em;
   }
-  .pq-body{ margin-top:34px; }
-  .pq-body p{ font-size:15px; line-height:1.85; color:rgba(43,50,38,0.86); margin-top:18px; max-width:600px; }
+
+  .pq-body{ margin-top:40px; }
+  .pq-body p{
+    font-size:15.5px; line-height:1.9; color:rgba(43,50,38,0.88);
+    margin-top:20px; max-width:600px;
+  }
   .pq-body p:first-child{ margin-top:0; }
+  .pq-body em{ font-style:italic; color:var(--ink); }
+
+  /* ── la vidéo, sous la lettre : la récompense ── */
+  .pq-video{ margin-top:56px; display:flex; flex-direction:column; align-items:center; }
+  .pq-frame{
+    position:relative; width:100%; max-width:340px; aspect-ratio:9/16;
+    border-radius:6px; overflow:hidden; background:#000;
+    border:1px solid var(--line); box-shadow:0 24px 60px -28px rgba(43,50,38,0.45);
+  }
+  .pq-frame video{ width:100%; height:100%; object-fit:cover; }
+  .pq-frame.playing video{ object-fit:contain; }
+  .pq-play{
+    position:absolute; inset:0; margin:auto; width:62px; height:62px; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; cursor:pointer;
+    color:var(--cream); background:rgba(20,23,15,0.86); border:1px solid rgba(245,240,228,0.18);
+    transition:transform .35s, background .35s, color .35s;
+  }
+  .pq-play:hover{ transform:scale(1.06); background:var(--clay); color:var(--noir); }
+  .pq-frame.playing .pq-play{ display:none; }
+
+  .pq-video-cue{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--muted); margin-top:18px; cursor:pointer; transition:color .3s;
+  }
+  .pq-video-cue:hover{ color:var(--clay); }
+  .pq-video.playing .pq-video-cue{ opacity:0; pointer-events:none; }
 </style>
+
+<script>
+  document.querySelectorAll('.pq-video[data-film]').forEach((box) => {
+    const frame = box.querySelector('.pq-frame');
+    const video = box.querySelector('video');
+    const cue = box.querySelector('.pq-video-cue');
+    if (!frame || !video) return;
+    const start = () => {
+      frame.classList.add('playing');
+      box.classList.add('playing');
+      video.setAttribute('controls', '');
+      video.play();
+    };
+    frame.querySelector('.pq-play')?.addEventListener('click', start);
+    cue?.addEventListener('click', start);
+  });
+</script>
