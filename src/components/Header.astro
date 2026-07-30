@@ -19,7 +19,7 @@ import Mark from './Mark.astro';
     position:absolute; top:0; left:0; right:0; z-index:10;
     padding:22px 0;
   }
-  .hdr{ display:flex; align-items:center; justify-content:space-between; }
+  .hdr{ display:flex; align-items:center; justify-content:space-between; gap:20px; }
   .hdr-brand{ display:flex; align-items:center; gap:11px; }
   .hdr-word{
     font-family:var(--serif); font-size:16px; letter-spacing:0.14em;
@@ -39,8 +39,14 @@ import Mark from './Mark.astro';
   }
   .hdr-cta:hover{ color:var(--flame); border-color:var(--flame); }
   @media (max-width:520px){
-    .hdr-word{ font-size:14px; }
-    .hdr-nav{ gap:16px; }
-    .hdr-link{ font-size:10px; letter-spacing:0.1em; }
+    .hdr-word{ font-size:13px; letter-spacing:0.08em; }
+    .hdr-nav{ gap:14px; }
+    .hdr-link{ font-size:10px; letter-spacing:0.08em; }
+    .hdr-cta{ font-size:10px; letter-spacing:0.08em; }
+  }
+  /* Sous 480px, l'espace manque pour trois libellés : le mot « Rituals »
+     s'efface, la pousse-flamme + « Ameya » suffisent à porter la marque. */
+  @media (max-width:480px){
+    .hdr-word em{ display:none; }
   }
 </style>
