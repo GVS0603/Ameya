@@ -7,7 +7,10 @@ import Mark from './Mark.astro';
       <Mark size={26} stroke="#F5F0E4" bindu="#AD8A3E" />
       <span class="hdr-word">Ameya <em>Rituals</em></span>
     </a>
-    <a href="#transmettre" class="hdr-cta">S'inscrire</a>
+    <nav class="hdr-nav">
+      <a href="/savoirs/" class="hdr-link">Les Savoirs</a>
+      <a href="/#transmettre" class="hdr-cta">S'inscrire</a>
+    </nav>
   </div>
 </header>
 
@@ -23,11 +26,21 @@ import Mark from './Mark.astro';
     color:var(--cream); text-transform:uppercase;
   }
   .hdr-word em{ font-style:italic; text-transform:none; letter-spacing:0.06em; color:rgba(245,240,228,0.72); }
+  .hdr-nav{ display:flex; align-items:center; gap:22px; }
+  .hdr-link{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
+    color:rgba(245,240,228,0.82); transition:color .3s;
+  }
+  .hdr-link:hover{ color:var(--flame); }
   .hdr-cta{
     font-family:var(--mono); font-size:11px; letter-spacing:0.16em; text-transform:uppercase;
     color:rgba(245,240,228,0.82); padding-bottom:3px; border-bottom:1px solid rgba(245,240,228,0.32);
     transition:color .3s, border-color .3s;
   }
   .hdr-cta:hover{ color:var(--flame); border-color:var(--flame); }
-  @media (max-width:520px){ .hdr-word{ font-size:14px; } }
+  @media (max-width:520px){
+    .hdr-word{ font-size:14px; }
+    .hdr-nav{ gap:16px; }
+    .hdr-link{ font-size:10px; letter-spacing:0.1em; }
+  }
 </style>
