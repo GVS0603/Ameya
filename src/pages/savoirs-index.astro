@@ -1,0 +1,95 @@
+---
+import Base from '../../layouts/Base.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const title = 'Les Savoirs — Ameya Rituals';
+const description =
+  "Des dossiers sur les gestes et les rituels transmis de corps en corps, de l'Inde jusqu'à vous. On raconte avant de vendre.";
+
+// Les dossiers publiés. Le pilote d'abord ; les suivants s'ajoutent ici.
+const dossiers = [
+  {
+    href: '/savoirs/les-mains/',
+    kicker: 'Les mains',
+    titre: 'Pourquoi avons-nous cessé de manger avec les mains ?',
+    resume:
+      "La fourchette a moins de cinq siècles à table ; manger avec les mains est immémorial. La vraie question n'est pas pourquoi l'Inde l'a gardé, mais pourquoi nous l'avons perdu.",
+    etat: null,
+  },
+];
+---
+<Base title={title} description={description} path="/savoirs/">
+  <Header />
+
+  <main class="savoirs">
+    <section class="s-hero">
+      <div class="wrap s-hero-inner">
+        <p class="s-eyebrow reveal">Les Savoirs</p>
+        <h1 class="s-title reveal d1">Ce que la main sait, ce qu'une génération a transmis.</h1>
+        <p class="s-lede reveal d2">
+          Des dossiers sur les gestes et les rituels transmis de corps en corps, de l'Inde
+          jusqu'à vous. On distingue toujours le fait, la tradition et l'hypothèse — et on préfère
+          dire « on ne sait pas » plutôt que raconter une belle histoire.
+        </p>
+      </div>
+    </section>
+
+    <section class="s-list">
+      <div class="wrap">
+        {dossiers.map((d) => (
+          <a class="s-item reveal" href={d.href}>
+            <span class="s-kicker">{d.kicker}</span>
+            <span class="s-item-title">{d.titre}</span>
+            <span class="s-resume">{d.resume}</span>
+            <span class="s-read">Lire le dossier →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Base>
+
+<style>
+  .s-hero{ background:var(--noir); color:var(--cream); padding:150px 0 78px; }
+  .s-hero-inner{ max-width:720px; }
+  .s-eyebrow{
+    font-family:var(--mono); font-size:11px; letter-spacing:0.28em; text-transform:uppercase;
+    color:var(--brass); font-weight:500;
+  }
+  .s-title{
+    font-family:var(--serif); font-weight:400; font-size:clamp(28px,4.8vw,44px);
+    line-height:1.12; margin-top:18px; max-width:18ch;
+  }
+  .s-lede{
+    font-size:15px; line-height:1.8; color:rgba(245,240,228,0.68);
+    margin-top:24px; max-width:56ch; font-weight:300;
+  }
+
+  .s-list{ background:var(--cream); color:var(--ink); padding:56px 0 96px; }
+  .s-item{
+    display:block; padding:38px 0; border-top:1px solid var(--line);
+    transition:padding-left .35s ease;
+  }
+  .s-item:last-child{ border-bottom:1px solid var(--line); }
+  .s-item:hover{ padding-left:10px; }
+  .s-kicker{
+    display:block; font-family:var(--mono); font-size:10.5px; letter-spacing:0.18em;
+    text-transform:uppercase; color:var(--clay); font-weight:500;
+  }
+  .s-item-title{
+    display:block; font-family:var(--serif); font-weight:400;
+    font-size:clamp(22px,3.4vw,30px); line-height:1.2; margin-top:12px; max-width:20ch;
+  }
+  .s-resume{
+    display:block; font-size:14.5px; line-height:1.8; color:rgba(43,50,38,0.78);
+    margin-top:14px; max-width:60ch;
+  }
+  .s-read{
+    display:block; font-family:var(--mono); font-size:11px; letter-spacing:0.12em;
+    text-transform:uppercase; color:var(--clay); margin-top:18px; transition:color .3s;
+  }
+  .s-item:hover .s-read{ color:var(--flame); }
+</style>
