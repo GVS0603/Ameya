@@ -20,6 +20,7 @@ export interface Episode {
   poster: string;     // image d'aperçu 4/5
   video: string | null;
   state: 'live' | 'soon';  // 'live' = disponible / 'soon' = en production
+  dossier?: string | null; // lien vers le dossier « Les Savoirs », si publié
 }
 
 export const episodes: Episode[] = [
@@ -41,5 +42,6 @@ export const episodes: Episode[] = [
     video: '/videos/ep3.mp4',
     // Passe à 'soon' (et video: null) si le montage n'est pas final.
     state: 'live',
+    dossier: '/savoirs/les-mains/',
   },
 ];
