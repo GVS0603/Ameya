@@ -33,6 +33,7 @@ export const episodes: Episode[] = [
     poster: '/posters/ep2.png',
     video: '/videos/ep2.mp4',
     state: 'live',
+    dossier: '/savoirs/la-diya/',
   },
   {
     id: 'ep3',
