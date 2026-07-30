@@ -21,6 +21,9 @@ const stateLabel = ep.state === 'soon' ? 'En production' : 'Bientôt en ligne';
   )}
   <span class="ep-tag">Le geste — {ep.geste}</span>
   <h3 class="ep-title" set:html={ep.title}></h3>
+  {ep.dossier && (
+    <a class="ep-more" href={ep.dossier}>En savoir plus →</a>
+  )}
 </article>
 
 <style>
@@ -57,4 +60,10 @@ const stateLabel = ep.state === 'soon' ? 'En production' : 'Bientôt en ligne';
     color:var(--clay); margin:16px 0 6px; display:block;
   }
   .ep-title{ font-size:18px; font-weight:500; line-height:1.32; color:var(--cream); }
+  .ep-more{
+    display:inline-block; margin-top:12px;
+    font-family:var(--mono); font-size:11px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--clay); transition:color .3s;
+  }
+  .ep-more:hover{ color:var(--flame); }
 </style>
