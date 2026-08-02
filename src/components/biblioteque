@@ -1,0 +1,65 @@
+<section class="bibliotheque">
+  <div class="biblio-inner">
+    <div class="biblio-kicker">Bibliothèque</div>
+    <h2 class="biblio-titre">Aller plus loin</h2>
+    <p class="biblio-lede">
+      Les dossiers longs : ce que disent les textes,
+      ce que dit la recherche, et ce qu'on ne sait pas encore.
+    </p>
+
+    <a class="biblio-carte" href="/bibliotheque/bain-de-bouche-huile">
+      <span class="carte-meta">Lecture 8 min</span>
+      <span class="carte-titre">Le bain de bouche à l'huile</span>
+      <span class="carte-sous">
+        L'histoire d'un geste que l'Inde n'a jamais oublié —
+        et ce que les réseaux sociaux ont inventé.
+      </span>
+      <span class="carte-lire">Lire le dossier →</span>
+    </a>
+  </div>
+</section>
+
+<style>
+  .bibliotheque{ padding:clamp(72px,12vw,120px) 24px; }
+  .biblio-inner{ max-width:34rem; margin:0 auto; }
+  .biblio-kicker{
+    font-family:'IBM Plex Mono',monospace; font-size:10.5px;
+    letter-spacing:0.28em; text-transform:uppercase;
+    color:#AD8A3E; margin-bottom:18px;
+  }
+  .biblio-titre{
+    font-family:'Fraunces',serif; font-weight:400;
+    font-size:clamp(26px,5vw,38px); line-height:1.15; margin:0 0 14px;
+  }
+  .biblio-lede{
+    font-size:15px; line-height:1.75; font-weight:300;
+    color:rgba(245,240,228,0.62); margin:0 0 40px; max-width:30rem;
+  }
+  .biblio-carte{
+    display:block; text-decoration:none; color:inherit;
+    border:1px solid rgba(245,240,228,0.16); border-radius:5px;
+    padding:28px 26px; transition:border-color .35s ease, background .35s ease;
+  }
+  .biblio-carte:hover, .biblio-carte:focus-visible{
+    border-color:rgba(173,138,62,0.55);
+    background:rgba(173,138,62,0.05);
+  }
+  .carte-meta{
+    display:block; font-family:'IBM Plex Mono',monospace;
+    font-size:10px; letter-spacing:0.16em; text-transform:uppercase;
+    color:#A8734A; margin-bottom:12px;
+  }
+  .carte-titre{
+    display:block; font-family:'Fraunces',serif; font-weight:500;
+    font-size:21px; line-height:1.25; margin-bottom:10px;
+  }
+  .carte-sous{
+    display:block; font-size:14px; line-height:1.7; font-weight:300;
+    color:rgba(245,240,228,0.6); margin-bottom:20px;
+  }
+  .carte-lire{
+    display:block; font-family:'IBM Plex Mono',monospace;
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase;
+    color:#AD8A3E;
+  }
+</style>
