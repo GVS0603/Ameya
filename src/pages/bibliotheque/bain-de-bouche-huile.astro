@@ -1,1 +1,332 @@
-l
+---
+// src/pages/bibliotheque/bain-de-bouche-huile.astro
+const titre = "Le bain de bouche à l'huile : l'histoire d'un geste que l'Inde n'a jamais oublié";
+const description = "Ce que les textes ayurvédiques disent vraiment du bain de bouche à l'huile — gandusha, kavala, sésame, coco — et ce que les réseaux sociaux ont inventé.";
+const url = "https://ameya.fr/bibliotheque/bain-de-bouche-huile";
+---
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>{titre} — Ameya Rituals</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={url} />
+
+<meta property="og:type" content="article" />
+<meta property="og:title" content={titre} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={url} />
+<meta property="og:image" content="https://ameya.fr/og/bain-de-bouche-huile.jpg" />
+<meta property="og:site_name" content="Ameya Rituals" />
+<meta name="twitter:card" content="summary_large_image" />
+
+<!-- Si les fontes sont déjà auto-hébergées sur le site, supprimer ces deux lignes. -->
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,400&family=Poppins:wght@300;400;500&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --noir:#14170F;
+    --ink:#2B3226;
+    --sage:#7C8969;
+    --clay:#A8734A;
+    --brass:#AD8A3E;
+    --flame:#E8C77A;
+    --cream:#F5F0E4;
+    --cream-2:#EFE8D8;
+    --line:rgba(43,50,38,0.14);
+    --muted:rgba(43,50,38,0.62);
+    --measure:34rem;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;}
+  body{
+    margin:0;background:var(--cream);color:var(--ink);
+    font-family:'Poppins',system-ui,sans-serif;font-weight:300;
+    line-height:1.78;-webkit-font-smoothing:antialiased;
+  }
+
+  /* ---------- OUVERTURE ---------- */
+  .hero{
+    background:var(--noir);color:var(--cream);
+    padding:clamp(72px,14vw,140px) 24px clamp(56px,10vw,96px);
+    position:relative;overflow:hidden;
+  }
+  .hero .halo{
+    position:absolute;top:0;left:50%;width:760px;height:760px;
+    transform:translate(-50%,-42%);pointer-events:none;
+    background:radial-gradient(circle,rgba(173,138,62,0.17) 0%,rgba(168,115,74,0.05) 40%,transparent 66%);
+  }
+  .hero-inner{max-width:var(--measure);margin:0 auto;position:relative;z-index:2;}
+  .flame{width:52px;height:52px;display:block;margin-bottom:36px;transform-origin:50% 90%;animation:breathe 6s ease-in-out infinite;}
+  .kicker{
+    font-family:'IBM Plex Mono',ui-monospace,monospace;font-size:10.5px;
+    letter-spacing:0.28em;text-transform:uppercase;color:var(--brass);margin-bottom:24px;
+  }
+  .hero h1{
+    font-family:'Fraunces',Georgia,serif;font-weight:400;
+    font-size:clamp(30px,6.4vw,50px);line-height:1.1;margin:0;letter-spacing:0.005em;
+  }
+  .hero .standfirst{
+    font-family:'Fraunces',Georgia,serif;font-style:italic;font-weight:300;
+    font-size:clamp(15px,2.6vw,19px);line-height:1.6;
+    color:rgba(245,240,228,0.7);margin:22px 0 0;
+  }
+  .byline{
+    margin-top:40px;padding-top:20px;border-top:1px solid rgba(245,240,228,0.16);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.12em;
+    text-transform:uppercase;color:rgba(245,240,228,0.5);
+  }
+
+  /* ---------- CORPS ---------- */
+  article{max-width:var(--measure);margin:0 auto;padding:clamp(52px,9vw,86px) 24px 0;}
+  article p, .science p{font-size:16px;margin:0 0 1.35em;color:rgba(43,50,38,0.88);}
+  article p.lede{font-size:18px;line-height:1.72;color:var(--ink);}
+  h2{
+    font-family:'Fraunces',Georgia,serif;font-weight:400;
+    font-size:clamp(23px,4.4vw,31px);line-height:1.22;
+    margin:0 0 0.7em;letter-spacing:0.005em;
+  }
+  h3{
+    font-family:'Fraunces',Georgia,serif;font-weight:500;font-size:18px;
+    margin:1.8em 0 0.35em;
+  }
+  strong{font-weight:500;color:var(--ink);}
+  em{font-style:italic;}
+  .sec{margin-top:clamp(48px,8vw,76px);}
+
+  /* respiration entre sections : le signe, pas un trait */
+  .breath{display:flex;justify-content:center;margin:clamp(52px,8vw,80px) 0;}
+  .breath svg{width:20px;height:20px;opacity:0.5;}
+
+  /* ---------- LES DEUX GESTES ---------- */
+  .diptyque{
+    display:grid;grid-template-columns:1fr 1fr;gap:1px;
+    background:var(--line);border:1px solid var(--line);border-radius:4px;
+    overflow:hidden;margin:34px 0 8px;
+  }
+  .geste{background:var(--cream-2);padding:26px 22px;}
+  .geste .nom{
+    font-family:'Fraunces',Georgia,serif;font-size:19px;font-weight:500;margin-bottom:2px;
+  }
+  .geste .quoi{
+    font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:0.14em;
+    text-transform:uppercase;color:var(--clay);margin-bottom:14px;
+  }
+  .geste p{font-size:14px;line-height:1.68;margin:0;color:rgba(43,50,38,0.84);}
+  .geste-glyph{width:30px;height:30px;margin-bottom:14px;display:block;}
+  @media(max-width:560px){.diptyque{grid-template-columns:1fr;}}
+
+  /* ---------- L'ENCART SCIENCE (inversé) ---------- */
+  .science{
+    background:var(--noir);color:var(--cream);margin:clamp(48px,8vw,72px) 0;
+    padding:clamp(36px,7vw,52px) 24px;position:relative;overflow:hidden;
+  }
+  .science-inner{max-width:var(--measure);margin:0 auto;position:relative;z-index:2;}
+  .science .halo{
+    position:absolute;top:50%;left:50%;width:520px;height:520px;transform:translate(-50%,-50%);
+    background:radial-gradient(circle,rgba(173,138,62,0.11) 0%,transparent 62%);pointer-events:none;
+  }
+  .science .kicker{color:var(--brass);margin-bottom:18px;}
+  .science h2{color:var(--cream);}
+  .science-inner p{color:rgba(245,240,228,0.8);font-size:15.5px;}
+  .science-inner strong{color:var(--cream);font-weight:400;}
+  .science .verdict{
+    font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:17px;line-height:1.6;
+    color:var(--flame);border-left:2px solid var(--brass);padding-left:20px;margin:26px 0 0;
+  }
+
+  /* ---------- FIN ---------- */
+  .signature{
+    text-align:center;margin:clamp(56px,9vw,84px) auto 0;max-width:var(--measure);
+  }
+  .signature svg{width:34px;height:34px;margin-bottom:16px;}
+  .signature p{
+    font-family:'Fraunces',Georgia,serif;font-style:italic;font-size:17px;color:var(--ink);margin:0;
+  }
+  .avert{
+    max-width:var(--measure);margin:clamp(44px,7vw,64px) auto 0;padding:0 24px;
+  }
+  .avert p{
+    font-size:12.5px;line-height:1.7;color:var(--muted);
+    border-top:1px solid var(--line);padding-top:18px;margin:0;
+  }
+  footer.doc{
+    max-width:var(--measure);margin:0 auto;padding:56px 24px clamp(64px,10vw,96px);
+    font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:0.1em;
+    text-transform:uppercase;color:var(--muted);
+  }
+  footer.doc a{color:var(--clay);text-decoration:none;border-bottom:1px solid rgba(168,115,74,0.35);}
+  footer.doc a:hover{color:var(--ink);}
+  a:focus-visible{outline:2px solid var(--brass);outline-offset:3px;}
+
+  @keyframes breathe{
+    0%,100%{transform:scaleY(1) skewX(0deg);}
+    25%{transform:scaleY(1.03) skewX(-1.2deg);}
+    50%{transform:scaleY(0.985) skewX(0.8deg);}
+    75%{transform:scaleY(1.02) skewX(-0.6deg);}
+  }
+  @media(prefers-reduced-motion:reduce){.flame{animation:none;}html{scroll-behavior:auto;}}
+</style>
+</head>
+<body>
+
+<!-- signe réutilisable -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="pousse" viewBox="0 0 200 200">
+    <g transform="rotate(7 100 100)">
+      <path fill="none" stroke="currentColor" stroke-width="6" stroke-linejoin="round" stroke-linecap="round"
+        d="M97,172 C 70,152 60,110 74,72 C 82,49 92,33 101,21 C 107,17 113,19 114,25 C 115,30 111,33 107,32 C 116,48 127,68 130,92 C 133,122 118,154 97,172 Z"/>
+      <path fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" opacity="0.5"
+        d="M99,186 C 95,160 93,110 94,66 C 95,50 97,38 100,29"/>
+      <circle fill="#AD8A3E" cx="123" cy="36" r="8"/>
+    </g>
+  </symbol>
+</svg>
+
+<header class="hero">
+  <div class="halo"></div>
+  <div class="hero-inner">
+    <svg class="flame" style="color:#F5F0E4" aria-hidden="true"><use href="#pousse"/></svg>
+    <div class="kicker">Bibliothèque Ameya</div>
+    <h1>Le bain de bouche à l'huile</h1>
+    <p class="standfirst">L'histoire d'un geste que l'Inde n'a jamais oublié — et ce que les réseaux sociaux ont inventé.</p>
+    <div class="byline">Henry Gnanou · Lecture 8 min</div>
+  </div>
+</header>
+
+<article>
+
+  <p class="lede">Enfant, on se moquait de moi en colonie de vacances.</p>
+
+  <p>Chaque matin, je me brossais les dents avant le petit-déjeuner. « Ce n'est pas comme ça qu'on fait », me disait-on.</p>
+
+  <p>Je ne comprenais pas bien le problème. En Inde, personne ne m'avait appris autre chose. Avant de faire entrer quoi que ce soit dans la bouche, on s'en occupait d'abord. C'était le premier geste de la journée, pas le dernier. En France, on attendait le café. J'étais celui qui faisait les choses « à l'envers ».</p>
+
+  <p>Vingt ans plus tard, les mêmes vidéos qui tournent sur Instagram recommandent désormais de nettoyer sa bouche dès le réveil. Ce qui paraissait étrange est devenu un conseil bien-être.</p>
+
+  <p>Pour moi, ce n'était pas une découverte. C'était un souvenir d'enfance.</p>
+
+  <div class="breath"><svg style="color:#A8734A" aria-hidden="true"><use href="#pousse"/></svg></div>
+
+  <section class="sec">
+    <h2>Le matin commence par la bouche</h2>
+    <p>Dans l'Ayurveda, la routine du matin porte un nom : la <strong>dinacharya</strong>. Ce n'est pas une liste de bonnes résolutions, c'est un ordre. Et cet ordre commence par le haut du corps et par les orifices — ce qui est en contact avec le monde.</p>
+    <p>Les textes classiques y décrivent une séquence : se nettoyer les dents, racler la langue, s'occuper de la bouche avec un liquide ou une huile, parfois appliquer quelques gouttes d'huile dans le nez. Puis seulement, la journée commence.</p>
+    <p>L'idée est simple, presque évidente une fois qu'on l'a entendue : la bouche est la première porte du corps. Avant d'y faire entrer de la nourriture, on la prépare.</p>
+    <p>Le bain de bouche à l'huile appartient à cette séquence. Il n'est pas un remède isolé qu'on sortirait d'un chapeau. Il est une pièce dans un enchaînement — et c'est peut-être ce que les adaptations modernes ont le plus perdu : le geste a été extrait de son matin.</p>
+  </section>
+
+  <section class="sec">
+    <h2>« Oil pulling » : un mot moderne pour deux gestes anciens</h2>
+    <p>C'est la confusion la plus répandue sur internet, et elle mérite qu'on s'y arrête.</p>
+    <p>Le terme <em>oil pulling</em> n'existe pas dans les textes classiques. Il est né en Occident. Les textes, eux, décrivent <strong>deux pratiques distinctes</strong>, avec deux noms différents.</p>
+
+    <div class="diptyque">
+      <div class="geste">
+        <svg class="geste-glyph" viewBox="0 0 40 40" aria-hidden="true">
+          <circle cx="20" cy="20" r="13" fill="none" stroke="#7C8969" stroke-width="1.6"/>
+          <circle cx="20" cy="20" r="4" fill="#A8734A"/>
+        </svg>
+        <div class="nom">Gandusha</div>
+        <div class="quoi">bouche pleine · immobile</div>
+        <p>La bouche est remplie presque entièrement — assez pour que le mouvement devienne impossible. On ne fait rien circuler. On garde, simplement, jusqu'à ce que le corps réagisse. Une pratique plutôt thérapeutique ; certaines variantes se font sous supervision.</p>
+      </div>
+      <div class="geste">
+        <svg class="geste-glyph" viewBox="0 0 40 40" aria-hidden="true">
+          <path d="M20,7 C 30,7 33,15 33,20 C 33,27 27,33 20,33 C 14,33 9,29 9,23 C 9,18 13,14 18,14 C 22,14 25,17 25,21" fill="none" stroke="#7C8969" stroke-width="1.6" stroke-linecap="round"/>
+          <circle cx="25" cy="21" r="3" fill="#A8734A"/>
+        </svg>
+        <div class="nom">Kavala</div>
+        <div class="quoi">petite quantité · en mouvement</div>
+        <p>La quantité est plus faible, choisie précisément pour qu'on puisse la faire circuler. On la pousse doucement entre les dents, autour des gencives. Le geste est actif, plus long. C'est la forme décrite pour l'usage quotidien.</p>
+      </div>
+    </div>
+
+    <p>La différence n'est donc pas une nuance de durée. C'est une opposition franche : <strong>une bouche immobile contre une huile qu'on fait tourner.</strong></p>
+    <p>Et voici ce qui suit logiquement : ce que les réseaux sociaux appellent aujourd'hui « oil pulling » — une cuillère d'huile qu'on fait circuler — correspond au <strong>kavala</strong>. Pourtant le mot le plus employé en ligne est « gandusha ». Il désigne, presque partout, un geste qui n'est pas le sien.</p>
+    <p>Ce n'est pas grave en soi. Mais quand une pratique voyage, elle perd ses noms avant de perdre son sens. C'est souvent le premier signe.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Pourquoi l'huile de sésame ?</h2>
+    <p>S'il fallait retenir une seule huile de l'Ayurveda, ce serait le sésame — <em>tila taila</em>.</p>
+    <p>Sa place dans les textes est difficile à surestimer. Le mot sanskrit <em>taila</em>, qui désigne l'huile en général, vient de <em>tila</em>, la graine de sésame. Lorsqu'une formule classique mentionne simplement « l'huile », sans préciser laquelle, c'est du sésame qu'il s'agit.</p>
+    <p>La tradition la décrit comme réchauffante et pénétrante — une huile qui porte ses qualités en profondeur plutôt que de rester en surface.</p>
+    <h3>Une précision qui change tout</h3>
+    <p>Il ne s'agit pas de l'huile de sésame grillé, sombre et puissante, celle des cuisines d'Asie de l'Est. Le <em>tila taila</em> est <strong>pressé à froid, non torréfié</strong> — pâle, doré, au goût discret. Ce sont deux produits différents sous un même nom.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Alors pourquoi voit-on autant d'huile de coco ?</h2>
+    <p>Parce que l'Inde n'est pas un seul paysage.</p>
+    <p>Au Kerala, au Tamil Nadu, dans une grande partie du Sud, le cocotier fait partie du quotidien depuis toujours. L'huile de coco y sert à cuisiner, à nourrir les cheveux, à masser le corps — et pour cette pratique aussi. Ce n'est pas une trahison des textes : c'est ce que fait une tradition vivante quand elle rencontre un climat et un arbre.</p>
+    <p>Dans les approches ayurvédiques modernes, la coco est souvent proposée comme une alternative plus rafraîchissante, notamment dans les climats très chauds. Là où le sésame réchauffe, la coco apaise.</p>
+    <p>La question n'est donc pas de savoir quelle huile est « la meilleure ». C'est de comprendre pourquoi deux usages coexistent — l'un venu des textes, l'autre venu de la terre.</p>
+  </section>
+
+  <section class="sec">
+    <h2>Faut-il vraiment tenir vingt minutes ?</h2>
+    <p>C'est l'information la plus répétée en ligne. C'est aussi la plus fragile.</p>
+    <p>Les textes classiques ne fixent pas de minuterie. Ils décrivent des <strong>signes physiologiques</strong> : la montée de la salive, la sensation de bouche pleine, et selon la technique, un larmoiement ou un écoulement nasal. Le signal de fin vient du corps, pas d'un chronomètre.</p>
+    <p>D'où vient alors ce chiffre ? De la diffusion occidentale de la pratique. En 1992, un médecin ukrainien, le Dr F. Karach, présente l'<em>oil pulling</em> lors d'une conférence de l'Union pan-ukrainienne des oncologues et bactériologistes. Il lui attribue la capacité de traiter des dizaines de maladies générales — des affirmations qui n'ont jamais été étayées. C'est cette version-là, avec sa durée fixe et ses promesses larges, qui a traversé les années 1990 et 2000 avant d'arriver sur nos écrans.</p>
+    <p>Autrement dit : le geste est ancien, mais <strong>les « vingt minutes » ont une trentaine d'années.</strong></p>
+    <p>C'est pourquoi nous préférons expliquer les textes plutôt que répéter un chiffre devenu viral. Quelques minutes, à un rythme confortable, suffisent amplement pour commencer.</p>
+  </section>
+
+</article>
+
+<aside class="science">
+  <div class="halo"></div>
+  <div class="science-inner">
+    <div class="kicker">Ce que dit la science</div>
+    <h2>Et ce qu'elle ne dit pas</h2>
+    <p>C'est la partie que la plupart des articles évitent. Elle nous paraît indispensable.</p>
+    <p>Le bain de bouche à l'huile a fait l'objet d'essais cliniques. Une méta-analyse publiée en 2024 dans l'<em>International Journal of Dental Hygiene</em>, portant sur des essais randomisés, conclut à un <strong>bénéfice probable sur la santé gingivale</strong>. D'autres revues rapportent des réductions modérées de la charge bactérienne buccale.</p>
+    <p>Mais la même méta-analyse énonce deux choses qu'il serait malhonnête de taire. D'abord, la <strong>chlorhexidine reste supérieure</strong> pour réduire la plaque dentaire. Ensuite — et c'est décisif — la <strong>qualité globale des preuves est jugée très faible</strong> : essais peu nombreux, petits effectifs, protocoles hétérogènes, durées courtes.</p>
+    <p>Quant aux affirmations les plus spectaculaires — les toxines « extraites » du sang, les maladies générales soignées par la bouche — elles n'ont jamais été démontrées. Elles viennent de la version des années 1990, pas des textes.</p>
+    <p>Concrètement : ce geste est un <strong>complément</strong>, jamais un remplacement. Il ne remplace ni le brossage, ni le fil dentaire, ni le dentiste.</p>
+    <p class="verdict">Un geste n'a pas besoin de guérir le monde pour mériter d'être transmis.</p>
+  </div>
+</aside>
+
+<article>
+
+  <section>
+    <h2>À quoi s'attendre la première fois</h2>
+    <p>Personne ne prévient jamais de cette partie, et c'est dommage — c'est elle qui fait abandonner.</p>
+    <p>La première fois, la texture surprend plus que le goût. Une cuillère d'huile dans une bouche à jeun, c'est dense, gras, et l'envie de recracher arrive vite. Le sésame pressé à froid a un goût discret, légèrement de noisette — rien à voir avec l'huile grillée — mais « discret » ne veut pas dire agréable quand on n'a rien avalé depuis huit heures.</p>
+    <p>Puis la salive monte, et le volume dans la bouche augmente. C'est normal, c'est même le signe que décrivent les textes. L'huile change de consistance en se mélangeant : elle devient plus claire, plus fluide.</p>
+    <h3>Trois conseils qui viennent de l'expérience</h3>
+    <p>Commencez court : une ou deux minutes suffisent la première semaine, l'inconfort s'atténue vite. Ne forcez pas le mouvement, la mâchoire fatigue plus qu'on ne croit. Et <strong>ne recrachez jamais dans l'évier</strong> — l'huile fige en refroidissant et finit par boucher les canalisations. Un mouchoir ou la poubelle, puis un rinçage à l'eau tiède.</p>
+    <p>Ce n'est pas un geste agréable au début. Il le devient.</p>
+  </section>
+
+  <div class="breath"><svg style="color:#A8734A" aria-hidden="true"><use href="#pousse"/></svg></div>
+
+  <section>
+    <h2>Ce que je retiens</h2>
+    <p>Longtemps, j'ai cru que je faisais les choses différemment. En réalité, je suivais un geste que d'autres avaient tenu avant moi, sans y penser, parce qu'on le leur avait montré.</p>
+    <p>Aujourd'hui on l'appelle <em>oil pulling</em>. Hier, ce n'était qu'une façon de commencer la journée.</p>
+    <p>C'est peut-être ça, la vraie histoire de ce geste : il n'a pas été redécouvert, il n'a jamais disparu. Il a seulement traversé le temps sans nous, pendant que nous le remplacions par un flacon.</p>
+    <p>Nous ne cherchons pas à transformer les traditions en tendances. Nous essayons de les raconter avec fidélité — y compris quand la fidélité oblige à dire « on ne sait pas ».</p>
+  </section>
+
+  <div class="signature">
+    <svg style="color:#2B3226" aria-hidden="true"><use href="#pousse"/></svg>
+    <p>Les traditions vivent tant qu'on les transmet.</p>
+  </div>
+
+</article>
+
+<div class="avert">
+  <p>Cet article a une vocation culturelle et documentaire. Il ne constitue pas un avis médical et ne remplace pas le suivi d'un chirurgien-dentiste ou d'un professionnel de santé.</p>
+</div>
+
+<footer class="doc">
+  Ameya Rituals · <a href="/">ameya.fr</a>
+</footer>
+
+</body>
+</html>
